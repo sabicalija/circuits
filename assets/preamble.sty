@@ -1,0 +1,47 @@
+% Preamble - Central Package Management Hub
+% This file serves as the main entry point for package imports and configurations
+
+% =============================================================================
+% CORE PACKAGES
+% =============================================================================
+
+% Graphics and colors
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+
+% Math support
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+
+% Document utilities
+\RequirePackage{xparse}
+
+% =============================================================================
+% COLOR DEFINITIONS (Technikum Theme)
+% =============================================================================
+\input{config/colors.sty}
+
+% =============================================================================
+% DIAGRAMS
+% =============================================================================
+
+% Load TikZ & CircuiTikZ
+\RequirePackage{tikz}
+\RequirePackage[european, straightvoltages]{circuitikz}
+
+% Load TikZ configuration (libraries and styles)
+\input{config/tikz-config.sty}
+
+% Load CircuiTikZ configuration (circuit-specific styles)
+\input{config/circuitikz-config.sty}
+
+% =============================================================================
+% ADDITIONAL PACKAGES (add as needed)
+% =============================================================================
+
+% Uncomment packages as needed:
+% \RequirePackage{siunitx}        % SI units
+% \RequirePackage{booktabs}       % Better tables
+% \RequirePackage{hyperref}       % Hyperlinks
+
+\endinput
