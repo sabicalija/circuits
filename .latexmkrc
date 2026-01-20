@@ -31,16 +31,14 @@ $clean_ext .= " acn acr alg glg glo gls nav ist snm vrb _minted-%R/* _minted-%R/
 # push @generated_exts, 'nav', 'snm';
 
 # The directory in which auxiliary files (aux, log, etc) are to be written by a run of *latex.
-# Using absolute path to ensure files always go to project's build folder regardless of source location.
-$aux_dir = "$pwd/build";
+$aux_dir = "build";
 
 # Use of this option results in a file of extension .fls containing a list of the files that these programs have read and written.
 # Latexmk will then use this file to improve its detection of source files and generated files after a run of *latex.
 $recorder = 1;
 
 # This variable specifies the directory in which output files are to be written by a run of *latex.
-# Using absolute path to ensure files always go to project's build folder regardless of source location.
-$out_dir = "$pwd/build";
+$out_dir = "build";
 
 # If zero, do NOT generate a pdf version of the document.
 # If equal to 1, generate a pdf version of the document using pdflatex, using the command specified by the $pdflatex variable.
@@ -51,6 +49,7 @@ $out_dir = "$pwd/build";
 $pdf_mode = 5;
 
 # Specifies the command line for the LaTeX processing program of when the xelatex program is called for.
+# Use %O which latexmk expands to include -output-directory when $out_dir is set
 $xelatex = 'xelatex %O -interaction=nonstopmode -halt-on-error --shell-escape %S';
 
 # Viewer auto-reloads when PDF changes
