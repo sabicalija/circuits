@@ -31,14 +31,16 @@ $clean_ext .= " acn acr alg glg glo gls nav ist snm vrb _minted-%R/* _minted-%R/
 # push @generated_exts, 'nav', 'snm';
 
 # The directory in which auxiliary files (aux, log, etc) are to be written by a run of *latex.
-$aux_dir = "build";
+# Using absolute path to ensure files always go to project's build folder regardless of source location.
+$aux_dir = "$pwd/build";
 
 # Use of this option results in a file of extension .fls containing a list of the files that these programs have read and written.
 # Latexmk will then use this file to improve its detection of source files and generated files after a run of *latex.
 $recorder = 1;
 
 # This variable specifies the directory in which output files are to be written by a run of *latex.
-$out_dir = "build";
+# Using absolute path to ensure files always go to project's build folder regardless of source location.
+$out_dir = "$pwd/build";
 
 # If zero, do NOT generate a pdf version of the document.
 # If equal to 1, generate a pdf version of the document using pdflatex, using the command specified by the $pdflatex variable.
