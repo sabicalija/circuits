@@ -1,0 +1,22 @@
+# LaTeX build artifacts
+build/
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.xdv
+*.synctex.gz
+*.synctex(busy)
+
+# Generated output (keep in build/)
+*.pdf
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
