@@ -1,0 +1,76 @@
+% TikZ Configuration for Technikum Theme
+% Styles and configurations for TikZ diagrams
+
+% =============================================================================
+% TIKZ LIBRARIES
+% =============================================================================
+
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{fadings}
+\usetikzlibrary{fit}
+\usetikzlibrary{matrix}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+
+% =============================================================================
+% TIKZ STYLES
+% =============================================================================
+
+% Node styles
+\tikzset{
+    % Add node styles here as needed
+}
+
+% Arrow styles
+\tikzset{
+    % Add arrow styles here as needed
+}
+
+\RequirePackage{eqparbox}
+\newcounter{legendid}
+
+% Syntax: \lentry[<optional fixed width>]{<label>}{<text>}
+\NewDocumentCommand{\lentry}{ o m m }{%
+    \IfNoValueTF{#1}{%
+        % 1. Make the box exactly as wide as the widest label (no padding inside)
+        \eqmakebox[legend\thelegendid][l]{#2}%
+        % 2. Add the padding rigidly AFTER the box
+        \hspace{0.5em}% 
+    }{%
+        \makebox[#1][l]{#2}%
+    }%
+    #3%
+}
+
+\newenvironment{variables}{
+    \stepcounter{legendid}
+    \begin{itemize}
+        }{
+    \end{itemize}
+}
+
+% Diagram-specific styles
+\tikzset{
+    % Add custom diagram styles here as needed
+    legend/.style={
+            execute at begin scope={\stepcounter{legendid}},
+            every node/.style={
+                    node distance=0em,
+                    align=left,
+                    font=\scriptsize,
+                    below=of current bounding box.south west,
+                    anchor=north west,
+                    inner sep = 0em,
+                    text depth = 0.25em,
+                    text height = 0.75em,
+                    execute at begin node={\hspace*{1em}},
+                }
+        }
+}
+
+\endinput

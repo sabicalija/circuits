@@ -1,0 +1,70 @@
+% CircuiTikz Configuration for Technikum Theme
+% Styles and configurations for electrical circuit diagrams
+
+% =============================================================================
+% COLOR DEFINITIONS
+% =============================================================================
+
+% Define circuit diagram colors for consistency
+\colorlet{icolor}{red!90!black}
+\colorlet{vcolor}{fhtw-blue}
+
+% =============================================================================
+% CIRCUITIKZ GLOBAL SETTINGS
+% =============================================================================
+
+\ctikzset{
+    % Visual styling
+    bipole current style/.append style = {
+            color=icolor
+        },
+    bipole voltage style/.append style = {
+            color=vcolor
+        },
+    voltage = straight,
+    % Predefined convenience styles
+    nvi/.style = { no v symbols, no i symbols },
+}
+
+% =============================================================================
+% CUSTOM CIRCUIT COMPONENTS
+% =============================================================================
+
+% Add custom component definitions here as needed
+% Example:
+% \ctikzset{
+%     my custom component/.style={...}
+% }
+
+% =============================================================================
+% CUSTOM COMMANDS
+% =============================================================================
+
+% Draw only current arrow for a component
+% Usage: \iarronly{component-name}
+\NewDocumentCommand{\iarronly}{m}{% {name}
+    \node [currarrow, color=icolor, anchor=center,
+        rotate=\ctikzgetdirection{#1-Iarrow}] at (#1-Ipos) {};
+}
+
+% Draw only voltage arrow for a component
+% Usage: \varronly{component-name}
+\NewDocumentCommand{\varronly}{m}{% {name}
+    \draw [color=vcolor] (#1-Vfrom) .. controls (#1-Vcont1)
+    and (#1-Vcont2).. (#1-Vto) node [currarrow,
+            sloped, anchor=tip, allow upside down,pos=1]{};
+}
+
+% Draw voltage arrow with fixed length
+% Usage: \fixedvlen[semilength]{node}{label}[extra options]
+\NewDocumentCommand{\fixedvlen}{O{0.5cm} m m O{}}{% [semilength]{node}{label}[extra options]
+    % get the center of the standard arrow
+    \coordinate (#2-Vcenter) at ($(#2-Vfrom)!0.5!(#2-Vto)$);
+    % draw an arrow of a fixed size around that center and on the same line
+    \draw[color=vcolor, #4] ($(#2-Vcenter)!#1!(#2-Vfrom)$) -- ($(#2-Vcenter)!#1!(#2-Vto)$)
+    node[currarrow, sloped, anchor=tip, allow upside down, pos=1]{};
+    % position the label as in the normal voltages
+    \node[anchor=\ctikzgetanchor{#2}{Vlab}, color=vcolor, #4] at (#2-Vlab) {#3};
+}
+
+\endinput
